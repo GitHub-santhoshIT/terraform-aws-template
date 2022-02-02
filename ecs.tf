@@ -39,7 +39,7 @@ resource "aws_ecs_task_definition" "aws-ecs-task" {
           "awslogs-region": "${var.aws_region}",
           "awslogs-stream-prefix": "${var.app_name}-${var.app_environment}"
         }
-      },
+      ,
       "portMappings": [
         {
           "containerPort": 8080,
@@ -81,7 +81,7 @@ resource "aws_ecs_service" "aws-ecs-service" {
 
   network_configuration {
     subnets          = aws_subnet.private.*.id
-    assign_public_ip = false
+    assign_public_ip = true
     security_groups = [
       aws_security_group.service_security_group.id,
       aws_security_group.load_balancer_security_group.id
